@@ -1,5 +1,4 @@
 /* RESET */
-
 * {
     margin: 0;
     padding: 0;
@@ -7,18 +6,22 @@
 }
 
 /* GENERAL */
-
 :root {
     --container-width: 500px;
     --container-heigth: 500px;
     --number-of-cell: 7;
 }
-
 body {
     font-family: 'Silkscreen', cursive;
-    background-color: #0D0D0D;
+    min-height: 100vh;
+    background-image: url('https://i.pinimg.com/originals/53/9c/48/539c483ff16585f1014ce8bff226bc56.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    user-select: none;
 }
 
+/* USER INPUT */
 #myapp--create-grid,
 #myapp--difficulty {
     width: 150px;
@@ -28,33 +31,33 @@ body {
     padding: 0 10px;
 }
 
+/* RESULT CONTAINER */
 #myapp--result-container {
-    height: 70px;
+    min-height: 100px;
 }
 
+/* GAME */
 .myapp--grid-container {
     width: var(--container-width);
     height: var(--container-heigth);
     border: 5px solid #929292;
-    background-color: #CCCCCC;
+    background-color: #000000;
     margin: 0 auto;
     box-sizing: content-box;
     cursor: pointer;
 }
-
 .myapp--grid-element {
     background-color: #CCCCCC;
     text-align: center;
     font-weight: bolder;
     font-size: 1.2em;
-    border: 1px solid #b6b4b4;
+    border: 2px solid #b6b4b4;
     width: calc(100% / var(--number-of-cell));
     height: calc(100% / var(--number-of-cell));
-    line-height: calc((var(--container-heigth) / var(--number-of-cell)) - 2px);
+    line-height: calc((var(--container-heigth) / var(--number-of-cell)) - 4px);
 }
-
 .myapp--grid-element.clicked {
-    background-color: #8d8d8d;
-    border: 5px solid #b6b4b4;
+    background-color: #c1c1c1;
+    border: 5px solid #9e9e9e;
     line-height: calc((var(--container-heigth) / var(--number-of-cell)) - 10px);
 }
