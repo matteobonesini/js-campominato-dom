@@ -1,0 +1,57 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GENERAL */
+
+:root {
+    --container-width: 500px;
+    --container-heigth: 500px;
+    --number-of-cell: 7;
+}
+
+body {
+    font-family: 'Silkscreen', cursive;
+    background-color: #0D0D0D;
+}
+
+#myapp--create-grid,
+#myapp--difficulty {
+    width: 150px;
+    height: 40px;
+    border: 2px solid rgb(96, 96, 96);
+    background-color: #CCCCCC;
+    padding: 0 10px;
+}
+
+
+.myapp--grid-container {
+    width: var(--container-width);
+    height: var(--container-heigth);
+    border: 5px solid #929292;
+    background-color: #CCCCCC;
+    margin: 0 auto;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+
+.myapp--grid-element {
+    background-color: #CCCCCC;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.2em;
+    border: 1px solid #b6b4b4;
+    width: calc(100% / var(--number-of-cell));
+    height: calc(100% / var(--number-of-cell));
+    line-height: calc((var(--container-heigth) / var(--number-of-cell)) - 2px);
+}
+
+.myapp--grid-element.clicked {
+    background-color: #8d8d8d;
+    border: 5px solid #b6b4b4;
+    line-height: calc((var(--container-heigth) / var(--number-of-cell)) - 10px);
+}
