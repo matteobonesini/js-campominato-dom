@@ -32,26 +32,41 @@ function numberInArray(array, number) {
 const createGridButton = document.getElementById('myapp--create-grid');
 const gridContainer = document.querySelector('.myapp--grid-container');
 const selectInput = document.getElementById('myapp--difficulty');
+const resultContainer = document.getElementById('myapp--result-container');
+const finalResult = document.getElementById('myapp--result');
+const scoreResult = document.getElementById('myapp--score');
 
 
 
 createGridButton.addEventListener('click', function() {
 
     let numberOfCell;
+    let gameOver = false;
+    let score = 0;
+    let maxScore;
+
+    if (!resultContainer.classList.contains('invisible')) {
+        resultContainer.classList.add('invisible');
+        finalResult.innerHTML = '-';
+        scoreResult.innerHTML = '-'; 
+    }
 
     // get params according to the difficulty
     switch(selectInput.value) {
         case "normal":
             numberOfCell = 81;
             document.documentElement.style.cssText = "--number-of-cell: 9";
+            maxScore = 65;
             break;
         case "hard":
             numberOfCell = 49;
             document.documentElement.style.cssText = "--number-of-cell: 7";
+            maxScore = 33;
             break;
         default:
             numberOfCell = 100;
             document.documentElement.style.cssText = "--number-of-cell: 10";
+            maxScore = 84;
     }
 
     // generate the bombs array
@@ -59,7 +74,6 @@ createGridButton.addEventListener('click', function() {
     console.log(bombsArray);
 
     gridContainer.innerHTML = '';
-    let gameOver = false;
 
     for (let i = 1; i <= numberOfCell; i++) {
         const newCell = document.createElement('div');
@@ -68,17 +82,23 @@ createGridButton.addEventListener('click', function() {
         gridContainer.append(newCell);
 
         newCell.addEventListener('click', function() {
-            if (gameOver === false) {
-                console.log('game over prima',gameOver);
+            if (gameOver === false && score < maxScore) {
                 this.classList.toggle('clicked');
-                console.log(`Seleziona cella n° ${this.innerHTML}`);
                 const checkBomb = numberInArray(bombsArray, parseInt(this.innerHTML));
                 if (checkBomb === true) {
                     gameOver = true;
-                    this.style.backgroundColor = 'red';
+                    this.style.backgroundColor = '#bc0000';
                     this.innerHTML = '&#x1F4A3;';
+                    resultContainer.classList.remove('invisible');
+                    finalResult.innerHTML = 'Hai perso!';
+                    scoreResult.innerHTML = `Punteggio: ${score}`;
                 }
-                console.log('game over dopo',gameOver);
+                score++;
+                if (score == maxScore && gameOver != true) {
+                    resultContainer.classList.remove('invisible');
+                    finalResult.innerHTML = 'Hai vinto!';
+                    scoreResult.innerHTML = `Punteggio: ${score}`;
+                }
             }
         })
     }

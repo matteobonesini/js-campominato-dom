@@ -28,6 +28,9 @@ body {
     padding: 0 10px;
 }
 
+#myapp--result-container {
+    height: 70px;
+}
 
 .myapp--grid-container {
     width: var(--container-width);

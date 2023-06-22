@@ -22,11 +22,11 @@
     </head>
     <body>
 
-        <div class="text-center py-5">
+        <div class="text-center pt-5 pb-2">
 
             <h1 class="text-light mb-3">Campo minato</h1>
 
-            <button id="myapp--create-grid" type="button">Crea Griglia</button>
+            <button id="myapp--create-grid" type="button">Gioca</button>
 
             <select id="myapp--difficulty">
                 <option value="easy">Facile</option>
@@ -36,7 +36,12 @@
 
         </div>
 
-        <div class="myapp--grid-container d-flex flex-wrap"></div>
+        <div id="myapp--result-container" class="invisible text-center text-light">
+            <h3 id="myapp--result">-</h3>
+            <h5 id="myapp--score">-</h5>
+        </div>
+
+        <div class="myapp--grid-container d-flex flex-wrap mt-3"></div>
         
         <!-- js -->
         <script type="text/javascript" src="js/script.js"></script>
