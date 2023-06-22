@@ -14,6 +14,20 @@ function uniqueRandomNumbers(max) {
 
 }
 
+// function that check if is a bomb cell
+function numberInArray(array, number) {
+    for (let i = 0; i < array.length; i++) {
+        if(array[i] == number) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
+
 // reference to HTML element in page
 const createGridButton = document.getElementById('myapp--create-grid');
 const gridContainer = document.querySelector('.myapp--grid-container');
@@ -45,6 +59,7 @@ createGridButton.addEventListener('click', function() {
     console.log(bombsArray);
 
     gridContainer.innerHTML = '';
+    let gameOver = false;
 
     for (let i = 1; i <= numberOfCell; i++) {
         const newCell = document.createElement('div');
@@ -53,8 +68,18 @@ createGridButton.addEventListener('click', function() {
         gridContainer.append(newCell);
 
         newCell.addEventListener('click', function() {
-            this.classList.toggle('clicked');
-            console.log(`Seleziona cella n° ${this.innerHTML}`)
+            if (gameOver === false) {
+                console.log('game over prima',gameOver);
+                this.classList.toggle('clicked');
+                console.log(`Seleziona cella n° ${this.innerHTML}`);
+                const checkBomb = numberInArray(bombsArray, parseInt(this.innerHTML));
+                if (checkBomb === true) {
+                    gameOver = true;
+                    this.style.backgroundColor = 'red';
+                    this.innerHTML = '&#x1F4A3;';
+                }
+                console.log('game over dopo',gameOver);
+            }
         })
     }
 
